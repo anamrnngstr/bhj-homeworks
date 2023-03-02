@@ -1,16 +1,16 @@
-let dead = document.getElementById('dead'); //click
-let lost = document.getElementById('lost'); //click
+const dead = document.getElementById('dead'); //click
+const lost = document.getElementById('lost'); //click
 // если онклик на крота дед +1 hole.classList.contains( 'hole_has-mole' );
 // дед = 10 - вы победили
 //
 // если онклик на !крота лост +1
 // лост = 5 - вы проиграли
-let newGame = () => {
+const newGame = () => {
     dead.textContent = 0;
     lost.textContent = 0;
 }
 
-let getHole = (index) => {
+const getHole = (index) => {
   return index = document.getElementById(`hole${index}`);
 }
 

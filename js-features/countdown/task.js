@@ -1,11 +1,12 @@
-let timer = document.getElementById('timer1');
+const timer = document.getElementById('timer1');
 
 //легкое задание
 
 
-let interval = setInterval(() => {
+const interval = setInterval(() => {
    if (timer.textContent == 0) {
     alert('Вы победили в конкурсе!');
+    clearInterval(interval);
    }
 
    if (timer.textContent > 0) {
