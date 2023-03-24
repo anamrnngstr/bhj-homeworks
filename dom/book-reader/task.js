@@ -1,77 +1,92 @@
 const fontSize = Array.from(document.querySelectorAll('.font-size'));
 const book = document.querySelector('.book');
 const color = document.querySelectorAll('.color');
+// const bookCntrl = Array.from(document.querySelectorAll('.book__control_font-size'));
 
-fontSize.forEach(el => {
-    el.onclick = () => {
-        if(el.classList.contains('font-size_small')) {
-            fontSize.forEach(remove => {
-                remove.classList.remove('font-size_active')
-            })
-            el.classList.add('font-size_active');
-            book.classList.add('book_fs-small');
-            return false;
-        }
-        if(el.classList.contains('font-size_big')) {
-            fontSize.forEach(remove => {
-                remove.classList.remove('font-size_active')
-            })
-            el.classList.add('font-size_active');
-            book.classList.add('book_fs-big');
-            return false;
-        }
-    }
-})
+    const active = document.querySelector('.font-size_active');
+    const smallActive = active.previousElementSibling;
+    const bigActive = active.nextElementSibling;
 
-color.forEach(el => {
-    el.onclick = () => {
-        if(el.classList.contains('text_color_gray')) {
-            color.forEach(remove => {
-                remove.classList.remove('color_active')
-            })
-            el.classList.add('text_color_gray');
-            book.classList.add('book_color-gray');
-            return false;
-        }
-        if(el.classList.contains('text_color_whitesmoke')) {
-            color.forEach(remove => {
-                remove.classList.remove('color_active')
-            })
-            el.classList.add('text_color_whitesmoke');
-            book.classList.add('book_color-whitesmoke');
-            return false;
-        }
-        if(el.classList.contains('text_color_black')) {
-            color.forEach(remove => {
-                remove.classList.remove('color_active')
-            })
-            el.classList.add('text_color_black');
-            book.classList.add('book_color-black');
-            return false;
-        }
-        if(el.classList.contains('bg_color_black')) {
-            color.forEach(remove => {
-                remove.classList.remove('color_active')
-            })
-            el.classList.add('bg_color_black');
-            book.classList.add('book_bg-black');
-            return false;
-        }
-        if(el.classList.contains('book_color-gray')) {
-            color.forEach(remove => {
-                remove.classList.remove('color_active')
-            })
-            el.classList.add('book_color-gray');
-            book.classList.add('book_bg-gray');
-            return false;
-        }
-        if(el.classList.contains('book_color-whitesmoke')) {
-            color.forEach(remove => {
-                remove.classList.remove('color_active')
-            })
-            el.classList.add('book_color-whitesmoke');
-            book.classList.add('book_bg-white');
-            return false;
-        }
+    const activeColor = document.querySelector('.color_active');
+    const activeGrey = activeColor.nextElementSibling;
+    const activeWhite = activeGrey.nextElementSibling;
+
+    const bgActive = document.querySelector('.book__control_background').firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling;
+    const bgGrey = bgActive.previousElementSibling;
+    const bgBlack = bgGrey.previousElementSibling;
+
+    smallActive.onclick = () => {
+        active.classList.remove('font-size_active');
+        bigActive.classList.remove('font-size_active');
+        smallActive.classList.add('font-size_active');
+        book.classList.remove('book_fs-big');
+        book.classList.add('book_fs-small');
+        return false;
     }
-})
+
+    active.onclick = () => {
+        bigActive.classList.remove('font-size_active');
+        smallActive.classList.remove('font-size_active');
+        active.classList.add('font-size_active');
+        book.classList.remove('book_fs-small', 'book_fs-big');
+        return false;
+    }
+
+    bigActive.onclick = () => {
+        active.classList.remove('font-size_active');
+        smallActive.classList.remove('font-size_active');
+        bigActive.classList.add('font-size_active');
+        book.classList.remove('book_fs-small');
+        book.classList.add('book_fs-big');
+        return false;
+    }
+
+    activeColor.onclick = () => {
+        activeGrey.classList.remove('color_active');
+        activeWhite.classList.remove('color_active');
+        activeColor.classList.add('color_active');
+        book.classList.remove('book_color-gray', 'book_color-whitesmoke');
+        book.classList.add('book_color-black');
+        return false;
+    }
+    activeGrey.onclick = () => {
+        activeColor.classList.remove('color_active');
+        activeWhite.classList.remove('color_active');
+        activeGrey.classList.add('color_active');
+        book.classList.remove('text_color_black', 'book_color-whitesmoke');
+        book.classList.add('book_color-gray');
+        return false;
+    }
+    activeWhite.onclick = () => {
+        activeColor.classList.remove('color_active');
+        activeGrey.classList.remove('color_active');
+        activeWhite.classList.add('color_active');
+        book.classList.remove('text_color_black', 'book_color-gray');
+        book.classList.add('book_color-whitesmoke');
+        return false;
+    }
+
+    bgActive.onclick = () => {
+        bgGrey.classList.remove('color_active');
+        bgBlack.classList.remove('color_active');
+        bgActive.classList.add('color_active');
+        book.classList.remove('book_bg-black', 'book_bg-gray');
+        book.classList.add('book_bg-white');
+        return false;
+    }
+    bgGrey.onclick = () => {
+        bgActive.classList.remove('color_active');
+        bgBlack.classList.remove('color_active');
+        bgGrey.classList.add('color_active');
+        book.classList.remove('book_bg-black', 'book_bg-white');
+        book.classList.add('book_bg-gray');
+        return false;
+    }
+    bgBlack.onclick = () => {
+        bgGrey.classList.remove('color_active');
+        bgActive.classList.remove('color_active');
+        bgBlack.classList.add('color_active');
+        book.classList.remove('book_bg-white', 'book_bg-gray');
+        book.classList.add('book_bg-black');
+        return false;
+    }
