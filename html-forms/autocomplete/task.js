@@ -68,6 +68,11 @@ class Autocomplete {
   }
 
   getMatches( text ) {
+    text = Array.from(document.querySelectorAll('option'));
+    text.forEach(el => {
+     this.value = el.value;
+    })
+
     /*
       TODO: этот метод нужно дописать
       text - фраза, которую вводят в поле поиска
