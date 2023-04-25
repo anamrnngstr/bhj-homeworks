@@ -1,32 +1,23 @@
-const blocks = document.querySelectorAll('.interests')
-const checkbox = Array.from(document.querySelectorAll('.interest__check'))
+const interests = document.querySelector('.interests');
 
+function toggleChildrenCheckboxes(checkbox, checked) {
+  const parent = checkbox.closest('.interest');
+  const childrenCheckboxes = parent.querySelectorAll('.interest__check');
 
-checkbox.forEach(el => {
-    el.addEventListener('change', () => {
-       
+  childrenCheckboxes.forEach(childCheckbox => {
+    childCheckbox.checked = checked;
+  });
+}
 
-        if (el.closest('label').innerText === 'Еда') {
-            el.closest('label').nextElementSibling.firstElementChild.firstElementChild.firstElementChild.checked = true;
-            el.closest('label').nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.firstElementChild.checked = true;
-            if (el.checked === false) {
-                el.closest('label').nextElementSibling.firstElementChild.firstElementChild.firstElementChild.checked = false;
-                el.closest('label').nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.firstElementChild.checked = false;
-                    }
-        }
+interests.addEventListener('change', event => {
+  const checkbox = event.target;
+  
+  if (!checkbox.classList.contains('interest__check')) {
+    return;
+  }
 
-        if (el.closest('label').innerText === 'Домашние животные') {
-            el.closest('label').nextElementSibling.firstElementChild.firstElementChild.firstElementChild.checked = true;
-            el.closest('label').nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.firstElementChild.checked = true;
-
-           if (el.checked === false) {
-            el.closest('label').nextElementSibling.firstElementChild.firstElementChild.firstElementChild.checked = false;
-            el.closest('label').nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.firstElementChild.checked = false;
-                }
-          
-        } 
-
-
-    })
-
-})
+  if (checkbox.closest('label').innerText === 'Еда' ||
+      checkbox.closest('label').innerText === 'Домашние животные') {
+    toggleChildrenCheckboxes(checkbox, checkbox.checked);
+  }
+});

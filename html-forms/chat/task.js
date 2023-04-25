@@ -8,10 +8,7 @@ chat.addEventListener('click', () => {
 
 document.addEventListener('keyup', (e) => {
     if (e.code === 'Enter') {
-        messages.innerHTML += <div class="message">
-        <div class="message__time">22:10</div>
-        <div class="message__text">Добрый день!</div>
-    </div>
+        messages.innerHTML += '<div class="message"><div class="message__time">22:10</div><div class="message__text">Добрый день!</div></div>'
         let message = document.querySelector('.message__text');
         message.innerHTML = input.value;
     }

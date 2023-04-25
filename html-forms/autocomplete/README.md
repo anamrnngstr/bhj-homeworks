@@ -20,9 +20,8 @@
 
 ```javascript
   getMatches( text ) {
-
-
-  
+    text = Array.from(document.querySelectorAll('option'));
+    console.log(this.input)
     
 
     /*
