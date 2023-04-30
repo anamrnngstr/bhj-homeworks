@@ -9,14 +9,6 @@ hasTtip.forEach(el => {
         el.insertAdjacentElement('beforebegin', hint);
         hint.style.left = `${el.getBoundingClientRect().left}px`;
         hint.style.top = `${el.getBoundingClientRect().bottom}px`;
-        const tooltipActive = Array.from(document.querySelectorAll('.tooltip_active'));
-        const activeFind = tooltipActive.find(elem => elem.classList.contains('tooltip_active'));
-        if (activeFind === undefined) {
-            hint.classList.add('tooltip_active');
-        } else if (activeFind !== hint) {
-                hint.classList.add("tooltip_active");
-            } else {
-            activeFind.classList.toggle('tooltip_active');
-        }
+        hint.classList.toggle('tooltip_active');
     })
 })
