@@ -14,29 +14,30 @@ let messageText = [
     'До досвидания',
     'Отлично!',
     'К сожалению все операторы заняты',
-    'Обратитесь в службу поддержки'
 ];
 let rand = Math.floor(Math.random() * messageText.length)
 let messageRandom = messageText[rand];
 
 document.addEventListener('keyup', (e) => {
     if (e.code === 'Enter') {
-        if (input.value) {
-            messages.innerHTML += `
-                    <div class="message message_client">
-                        <div class="message__time">${nowTime}</div>
-                        <div class="message__text">${input.value}</div>
-                    </div>
-                    `;
-				input.value = "";
-                messages.innerHTML += `<div class="message">
-                <div class="message__time">${nowTime}</div>
-                <div class="message__text">
-                    ${messageRandom}
-                </div>
-            </div>`
-        }
-    
-
+      const trimmedInputValue = input.value.trim();
+      if (trimmedInputValue) {
+        messages.innerHTML += `
+          <div class="message message_client">
+            <div class="message__time">${nowTime}</div>
+            <div class="message__text">${trimmedInputValue}</div>
+          </div>
+        `;
+        input.value = '';
+        const messageRandom = messageText[rand];
+        messages.innerHTML += `
+          <div class="message">
+            <div class="message__time">${nowTime}</div>
+            <div class="message__text">
+              ${messageRandom}
+            </div>
+          </div>
+        `;
+      }
     }
-})
+  });
